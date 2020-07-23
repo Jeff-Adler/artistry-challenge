@@ -1,5 +1,7 @@
 <h3>Instruments</h3>
 
 <% @instruments.each do |instrument| %>
-    <%= link_to instrument.name, instrument_path(instrument) %><br>
+    <%= link_to instrument.name, instrument_path(instrument) %>
+    <%= instrument.classification %>
+    <br>
 <% end %>
