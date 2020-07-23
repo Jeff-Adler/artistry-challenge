@@ -16,6 +16,15 @@
     <%= f.label :title %>
     <%= f.text_field :title %><br>
 
+        <h3>Instruments:</h3>
+        <%= f.fields_for :instruments, @artist.instruments.build do |t| %>
+            <%= t.label :name %>
+            <%= t.text_field :name %><br>
+            <%= t.label :classification %>
+            <%= t.text_field :classification %><br>
+        <%end%>
+
     <%= f.submit %>
+
 <% end %>
 

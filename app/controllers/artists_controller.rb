@@ -31,7 +31,7 @@ class ArtistsController < ApplicationController
         if @artist.update(artist_params)
             redirect_to artist_path(@artist)
         else
-            redirect_to edit_artit_path(@artist), form_errors: @artist.errors.full_messages
+            redirect_to edit_artist_path(@artist), form_errors: @artist.errors.full_messages
         end
     end
 
@@ -47,7 +47,7 @@ class ArtistsController < ApplicationController
     end
 
     def artist_params 
-        params.require(:artist).permit(:name, :age, :title)
+        params.require(:artist).permit(:name, :age, :title, instruments_attributes: [:name,:classification])
     end
 end
 

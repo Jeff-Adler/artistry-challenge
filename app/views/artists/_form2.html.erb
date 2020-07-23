@@ -1,0 +1,33 @@
+<% if flash[:form_errors] %>
+<ul>
+    <% flash[:form_errors].each do |error| %>
+        <li><%=error%></li>
+    <% end %>
+</ul>
+<% end %>
+
+<%= form_for @artist do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+
+    <%= f.label :age %>
+    <%= f.text_field :age %><br>
+    
+    <%= f.label :title %>
+    <%= f.text_field :title %><br>
+
+    <h3>Instrument:</h3>
+
+     <%= f.fields_for :instruments, @artist.instruments.build do |t| %>
+        <%= t.text_field :name, list: "instruments_autocomplete" %>
+            <datalist id="instruments_autocomplete">
+                <% Instrument.all.each do |instrument| %>
+                    <option value="<%= instrument.name %>">
+                <% end %>
+            </datalist>
+    <%end%>
+    <br>
+    <br> 
+    <%= f.submit %>
+<% end %>
+
