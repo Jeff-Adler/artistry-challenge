@@ -1,0 +1,13 @@
+<h3> Artist </h3>
+
+Name: <%= @artist.name %><br>
+Age: <%= @artist.age %><br>
+Title: <%= @artist.title %><br>
+
+<h3> Artist's instruments: </h3>
+
+<% @instruments.each do |instrument| %>
+    <%= link_to instrument.name, instrument_path(instrument) %><br>
+<% end %>
+
+<%= button_to "Delete Artist", artist_path(@artist), method: :delete%>

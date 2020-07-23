@@ -1,0 +1,12 @@
+<h3> Instrument </h3>
+
+Name: <%= @instrument.name %><br>
+Classification: <%= @instrument.classification %><br>
+
+<h3> Artists who play this instrument: </h3>
+
+<% @artists.each do |artist| %>
+    <%= link_to artist.name, artist_path(artist) %><br>
+<% end %>
+
+<%= button_to "Delete Instrument", instrument_path(@instrument), method: :delete %>
