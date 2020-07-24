@@ -13,7 +13,10 @@ class InstrumentsController < ApplicationController
         @instrument = Instrument.create(instrument_params)
 
         if @instrument.valid?
+            #if new artist is created, send them to flash with artists params
+                #if artists is not new, take them to instrument path
             redirect_to instrument_path(@instrument)
+                #if artist is new, render the same page with those attributes
         else
             redirect_to new_instrument_path, form_errors: @instrument.errors.full_messages
         end
@@ -31,7 +34,7 @@ class InstrumentsController < ApplicationController
         if @instrument.update(instrument_params)
             redirect_to instrument_path(@instrument)
         else
-            redirect_to edit_artit_path(@instrument), form_errors: @instrument.errors.full_messages
+            redirect_to edit_instrument_path(@instrument), form_errors: @instrument.errors.full_messages
         end
     end
 
@@ -47,6 +50,8 @@ class InstrumentsController < ApplicationController
     end
 
     def instrument_params 
-        params.require(:instrument).permit(:name, :classification)
+       # params.require(:instrument).permit(:name, :classification, :artists_attributes[:name, :age, :title])
+        
+       params.require(:instrument).permit(:name, :classification, artists_attributes: [:name])
     end
 end

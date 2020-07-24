@@ -47,7 +47,7 @@ class ArtistsController < ApplicationController
     end
 
     def artist_params 
-        params.require(:artist).permit(:name, :age, :title, instruments_attributes: [:name,:classification])
+        params.require(:artist).permit(:name, :age, :title, instruments_attributes: [:name])
     end
 end
 
